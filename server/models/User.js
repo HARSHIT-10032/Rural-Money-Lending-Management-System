@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
   district: String,
   tehsil: String,
   state: String,
+  loans: [{ 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "Loan" 
+    }]
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);
