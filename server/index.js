@@ -6,12 +6,14 @@ const app = express();
 app.use(express.json());
 app.use(errorHandler);
 
+const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const loanRoutes = require("./routes/loanRoutes");
 
 // routes
 app.use("/api/auth", authRoutes);
 app.use("/api/loans", loanRoutes);
+app.use("/api/users", userRoutes);
 
 // Start server
 connectDB().then(() => {
