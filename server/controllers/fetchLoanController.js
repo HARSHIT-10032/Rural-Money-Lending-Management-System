@@ -43,3 +43,25 @@ exports.getClearedLoans = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Settled loan API {CLEARED LOAN}
+exports.getClearedLoanById = async (req, res) => {
+  try {
+    const loan = await Loan.findById(req.params.id).populate(
+      "user",
+      "name aadhaar surname mobile village district tehsil state"
+    );
+
+    if (!loan) {
+      return res.status(404).json({ message: "Loan not found" });
+    }
+
+    if (loan.status !== "Cleared") {
+      return res.status(400).json({ message: "Loan is not cleared" });
+    }
+
+    res.json(loan);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

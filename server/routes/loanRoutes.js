@@ -6,6 +6,7 @@ const {
     getAllLoans,
     getPendingLoans,
     getClearedLoans,
+    getClearedLoanById,
 } = require("../controllers/fetchLoanController");
 
 // Create Loan API to create loan for user
@@ -15,6 +16,8 @@ router.post("/create", createLoan);
 router.get("/pending", getPendingLoans);
 // == Cleared loans API
 router.get("/cleared", getClearedLoans);
+// loanRoutes.js
+router.get("/cleared/:id", getClearedLoanById);
 
 // == All loans Dashboard API
 router.get("/", getAllLoans);
