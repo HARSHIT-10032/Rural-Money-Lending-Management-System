@@ -25,6 +25,10 @@ const loanSchema = new mongoose.Schema({
     type: Number, 
     required: true 
   },
+  totalInterestPaid: { 
+    type: Number, 
+    default: 0 
+  },
   totalInterest: { 
     type: Number, 
     default: 0 
@@ -37,6 +41,9 @@ const loanSchema = new mongoose.Schema({
     type: String,
     enum: ["Pending", "Cleared", "Due Soon", "Revised"],
     default: "Pending",
+  },
+  closeDate: { 
+    type: Date 
   },
   remarks: String,
   payments: [{ 

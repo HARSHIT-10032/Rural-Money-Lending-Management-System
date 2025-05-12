@@ -46,9 +46,11 @@ exports.createLoan = async (req, res) => {
     const loan = new Loan({
       user: user._id,
       amount: Number(amount),
+      principalRemaining: Number(amount),
       interestRate: Number(interestRate),
       loanTermMonths: Number(loanTermMonths),
       sanctionDate,
+      repaymentFrequency,
       purpose,
       securityType,
       guarantorName,
@@ -57,6 +59,24 @@ exports.createLoan = async (req, res) => {
       notes,
       status: "Pending",
     });
+    
+    if (sanctionDate) {
+      const start = new Date(sanctionDate);
+      const now = new Date();
+
+      let months =
+        (now.getFullYear() - start.getFullYear()) * 12 +
+        (now.getMonth() - start.getMonth());
+
+      if (now.getDate() < start.getDate()) {
+        months -= 1;
+      }
+
+      if (months > 0) {
+        const monthlyInterest = (Number(amount) * Number(interestRate)) / 1200;
+        loan.totalInterest = monthlyInterest * months;
+      }
+    }
     
     await loan.save();
 
