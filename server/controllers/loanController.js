@@ -77,7 +77,7 @@ exports.createLoan = async (req, res) => {
         loan.totalInterest = monthlyInterest * months;
       }
     }
-    
+
     await loan.save();
 
     user.loans.push(loan._id);
@@ -92,6 +92,63 @@ exports.createLoan = async (req, res) => {
   } catch (err) {
     res.status(400).json({ 
       message: err.message 
+    });
+  }
+};
+
+// Record a Payment
+exports.recordPayment = async (req, res) => {
+  try {
+    const { loanId, amount, type, paymentMethod, date } = req.body;
+
+    const loan = await Loan.findById(loanId);
+    if (!loan) {
+      return res.status(404).json({
+        error: "Loan not found" 
+      });
+    }
+
+    const amt = Number(amount) || 0;
+    if (amt <= 0) {
+      return res.status(400).json({ 
+        error: "Invalid payment amount" 
+      });
+    }
+
+    if (type === "Interest") {
+      if (amt > loan.totalInterest) {
+        return res
+          .status(400)
+          .json({ error: "Amount cannot exceed outstanding interest" });
+      }
+      loan.totalInterest -= amt;
+      loan.totalInterestPaid += amt;
+    } else if (type === "Settlement") {
+      // Full settlement
+      loan.totalInterest = 0;
+    }
+
+    // Save Payment Record
+    const payment = new Payment({
+      loan: loan._id,
+      amount: amt,
+      type,
+      paymentMethod,
+      dateOfPayment: date || new Date(),
+    });
+    await payment.save();
+
+    await loan.save();
+
+    res.json({ 
+      message: "Payment recorded", 
+      loan, 
+      payment 
+    });
+  } catch (err) {
+    console.error("Payment error:", err);
+    res.status(500).json({
+       error: err.message 
     });
   }
 };
