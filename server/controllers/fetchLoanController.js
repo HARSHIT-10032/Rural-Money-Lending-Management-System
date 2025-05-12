@@ -65,3 +65,33 @@ exports.getClearedLoanById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Get Loans by Status
+exports.getLoansByStatus = async (req, res) => {
+  try {
+    const { status } = req.params;
+    const loans = await Loan.find({ status })
+      .populate("user")
+      .populate("payments");
+    res.json(loans);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get Loan by ID
+exports.getLoanById = async (req, res) => {
+  try {
+    const loan = await Loan.findById(req.params.id)
+      .populate("user");
+
+    if (!loan) {
+      return res.status(404).json({ error: "Loan not found" });
+    }
+
+    res.json(loan);
+  } catch (err) {
+    console.error("Error fetching loan:", err);
+    res.status(500).json({ error: err.message });
+  }
+};
