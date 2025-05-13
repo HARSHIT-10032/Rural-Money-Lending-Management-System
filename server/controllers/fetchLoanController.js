@@ -1,5 +1,6 @@
 const Loan = require("../models/Loan");
 const User = require("../models/User");
+const Payment = require("../models/Payment");
 
 //  API for Dashboard
 exports.getAllLoans = async (req, res) => {
