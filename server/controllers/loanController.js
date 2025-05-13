@@ -1,6 +1,6 @@
 const Loan = require("../models/Loan");
 const User = require("../models/User");
-
+const Payment = require("../models/Payment");
 
 exports.createLoan = async (req, res) => {
   try {
@@ -59,7 +59,7 @@ exports.createLoan = async (req, res) => {
       notes,
       status: "Pending",
     });
-    
+
     if (sanctionDate) {
       const start = new Date(sanctionDate);
       const now = new Date();
@@ -83,15 +83,14 @@ exports.createLoan = async (req, res) => {
     user.loans.push(loan._id);
     await user.save();
 
-    res.status(201).json({ 
-      message: "Loan created successfully", 
-      loan, 
-      user 
+    res.status(201).json({
+      message: "Loan created successfully",
+      loan,
+      user,
     });
-
   } catch (err) {
-    res.status(400).json({ 
-      message: err.message 
+    res.status(400).json({
+      message: err.message,
     });
   }
 };
@@ -104,14 +103,14 @@ exports.recordPayment = async (req, res) => {
     const loan = await Loan.findById(loanId);
     if (!loan) {
       return res.status(404).json({
-        error: "Loan not found" 
+        error: "Loan not found",
       });
     }
 
     const amt = Number(amount) || 0;
     if (amt <= 0) {
-      return res.status(400).json({ 
-        error: "Invalid payment amount" 
+      return res.status(400).json({
+        error: "Invalid payment amount",
       });
     }
 
@@ -126,6 +125,9 @@ exports.recordPayment = async (req, res) => {
     } else if (type === "Settlement") {
       // Full settlement
       loan.totalInterest = 0;
+      loan.totalInterestPaid += amt;
+      loan.status = "Cleared";
+      loan.closeDate = date || new Date();
     }
 
     // Save Payment Record
@@ -140,15 +142,15 @@ exports.recordPayment = async (req, res) => {
 
     await loan.save();
 
-    res.json({ 
-      message: "Payment recorded", 
-      loan, 
-      payment 
+    res.json({
+      message: "Payment recorded",
+      loan,
+      payment,
     });
   } catch (err) {
     console.error("Payment error:", err);
     res.status(500).json({
-       error: err.message 
+      error: err.message,
     });
   }
 };

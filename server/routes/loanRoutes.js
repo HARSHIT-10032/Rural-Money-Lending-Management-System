@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { createLoan } = require("../controllers/loanController");
+const { createLoan,
+    recordPayment
+ } = require("../controllers/loanController");
 const { 
     getAllLoans,
     getPendingLoans,
@@ -13,6 +15,8 @@ const {
 
 // Create Loan API to create loan for user
 router.post("/create", createLoan);
+// Record Payment
+router.post("/payment", recordPayment);
 
 // == All loans Dashboard API
 router.get("/", getAllLoans);
