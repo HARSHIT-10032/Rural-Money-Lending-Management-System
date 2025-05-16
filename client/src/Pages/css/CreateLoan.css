@@ -1,0 +1,157 @@
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  background: #f4f6f9;
+}
+
+.loan-form {
+  width: 800px;
+  max-width: 95%;
+  background: #fff;
+  padding: 30px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+}
+
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-group label {
+  width: 180px;
+  text-align: right;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+}
+
+.form-group.full-width {
+  flex-direction: column;
+}
+
+.form-group.full-width label {
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+.form-group.full-width input,
+.form-group.full-width textarea,
+.form-group.full-width select {
+  width: 100%;
+}
+
+
+.error {
+  color: #d9534f;
+  font-size: 13px;
+  margin-left: 180px;
+  margin-top: 4px;
+}
+
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.btn-submit,
+.btn-reset {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.btn-submit {
+  background-color: #22ec83;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background-color: #1cc66f;
+}
+
+.btn-reset {
+  background-color: #e78625;
+  color: #fff;
+}
+
+.btn-reset:hover {
+  background-color: #d6690f;
+}
+
+.policy-points {
+  font-size: 14px;
+  color: #333;
+}
+
+.policy-points ul {
+  margin: 4px 0 0 20px;
+  padding: 0;
+  list-style-type: disc;
+}
+
+.policy-points li {
+  margin-bottom: 4px;
+}
+
+.submitted-box {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+}

@@ -10,10 +10,9 @@ function App() {
 
   return (
     <Router>
-      
+
       <Routes>
         <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-      </Routes>
 
       <Route
         path="/dashboard"
@@ -25,8 +24,19 @@ function App() {
         }
       />
 
+      <Route
+        path="/create-loan"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <Navbar setIsLoggedIn={setIsLoggedIn} />
+            <CreateLoan />
+          </ProtectedRoute>
+        }
+      />
 
-      
+
+
+      </Routes>
     </Router>
   )
 }
