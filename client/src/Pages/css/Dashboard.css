@@ -1,0 +1,121 @@
+
+.page-wrapper {
+  padding-top: 80px;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 30px 30px 30px; 
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.dashboard-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  border-left: 4px solid #3498db;
+  padding-left: 8px;
+}
+
+
+.search-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  outline: none;
+}
+
+.search-box:focus {
+  border-color: #6366f1;
+  box-shadow: 0px 0px 6px rgba(99, 102, 241, 0.5);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.loan-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.loan-table th,
+.loan-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  font-size: 14px;
+}
+
+.loan-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.loan-table td {
+  color: #374151;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Status Badges */
+.status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.pending {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status.cleared {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status.due {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.status.default {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.no-records {
+  text-align: center;
+  padding: 16px;
+  color: #6b7280;
+}
+
+.loan-table tr:hover {
+  background: #f9fafb;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}

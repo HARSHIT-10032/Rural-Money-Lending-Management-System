@@ -10,9 +10,23 @@ function App() {
 
   return (
     <Router>
+      
       <Routes>
         <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
       </Routes>
+
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <Navbar setIsLoggedIn={setIsLoggedIn} />
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
+
+      
     </Router>
   )
 }
