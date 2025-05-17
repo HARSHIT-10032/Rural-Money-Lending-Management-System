@@ -52,7 +52,17 @@ function App() {
               <SettleLoan />
             </ProtectedRoute>
           }
-        />
+      />
+
+      <Route
+          path="/cleared-loan"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Navbar setIsLoggedIn={setIsLoggedIn} />
+              <ClearedLoans />
+            </ProtectedRoute>
+          }
+      />        
 
 
 

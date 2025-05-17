@@ -274,7 +274,7 @@ const SettleLoan = () => {
 
                     {settleOption === "compound" && (
                         <div className="info-box">
-                            <p>👉 Principal will be updated for next year interest.</p>
+                            <p>Principal will be updated for next year interest.</p>
                         </div>
                     )}
                 </div>
