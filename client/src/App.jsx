@@ -34,6 +34,16 @@ function App() {
         }
       />
 
+      <Route
+        path="/manage-interest"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <Navbar setIsLoggedIn={setIsLoggedIn} />
+            <ManageInterest />
+          </ProtectedRoute>
+        }
+      />
+
 
 
       </Routes>
