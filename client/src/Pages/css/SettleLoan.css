@@ -1,0 +1,208 @@
+ .settle-container {
+  max-width: 1200px;
+  margin: 40px auto 20px;
+  padding: 20px;
+}
+
+
+.settle-container h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.settle-container h2 {
+  font-size: 20px;
+  margin: 20px 0 10px;
+  color: #444;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 5px;
+}
+
+
+.settle-container p {
+  margin: 6px 0;
+  color: #555;
+}
+
+
+.settle-container select,
+.settle-container input[type="number"],
+.settle-container input[type="date"] {
+  padding: 8px 10px;
+  margin: 6px 5px 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.settle-container select:focus,
+.settle-container input:focus {
+  border-color: #2563eb;
+}
+
+.btn-confirm,
+.btn-interest,
+.btn-back {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  margin-top: 10px;
+  margin-right: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.btn-confirm:hover,
+.btn-interest:hover,
+.btn-back:hover {
+  background: #1e40af;
+}
+
+.btn-back {
+  background: #6b7280;
+}
+
+.btn-back:hover {
+  background: #4b5563;
+}
+
+.msg-danger {
+  color: #dc2626;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.msg-info {
+  color: #2563eb;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+
+@media (max-width: 768px) {
+  .settle-container {
+    padding: 15px;
+  }
+  .settle-container h1 {
+    font-size: 22px;
+  }
+  .settle-container h2 {
+    font-size: 18px;
+  }
+  .btn-confirm,
+  .btn-interest,
+  .btn-back {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
+
+.card-box {
+  background: #fff;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.detail-table th {
+  text-align: left;
+  padding: 8px 10px;
+  background: #f3f4f6;
+  color: #374151;
+  width: 40%;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-table td {
+  padding: 8px 10px;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.settle-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+
+.settle-type {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 15px 0;
+}
+
+.settle-type label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.settle-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.settle-form input,
+.settle-form select,
+.settle-form button {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.btn-confirm,
+.btn-interest {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.btn-confirm:hover,
+.btn-interest:hover {
+  background: #0056b3;
+}
+
+.info-box {
+  background: #f1f8ff;
+  padding: 12px;
+  border-left: 4px solid #007bff;
+  border-radius: 6px;
+  font-size: 14px;
+}

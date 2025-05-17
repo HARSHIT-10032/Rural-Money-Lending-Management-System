@@ -44,6 +44,16 @@ function App() {
         }
       />
 
+      <Route
+          path="/settle-loan/:id"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Navbar setIsLoggedIn={setIsLoggedIn} />
+              <SettleLoan />
+            </ProtectedRoute>
+          }
+        />
+
 
 
       </Routes>
