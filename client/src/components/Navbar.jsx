@@ -18,10 +18,10 @@ export default function Navbar() {
       <div className="navbar-container">
         <h2 className="navbar-logo">Loan Management</h2>
         <div className="navbar-links">
-          <Link>Dashboard</Link>
-          <Link>Create Loan</Link>
-          <Link>Manage Interest</Link>
-          <Link>Cleared Loan</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/create-loan">Create Loan</Link>
+          <Link to="/manage-interest">Manage Interest</Link>
+          <Link to="/cleared-loan">Cleared Loan</Link>
           <button className="logout-btn" onClick={handleLogout}>Logout</button>
         </div>
       </div>
