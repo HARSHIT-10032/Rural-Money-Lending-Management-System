@@ -62,8 +62,22 @@ function App() {
               <ClearedLoans />
             </ProtectedRoute>
           }
-      />        
+      />
 
+      <Route
+        path="/cleared-loan-detail/:id"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <Navbar setIsLoggedIn={setIsLoggedIn} />
+            <SettledLoanDetail />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="*"
+        element={<Navigate to={isLoggedIn ? "/dashboard" : "/"} />}
+      />
 
 
       </Routes>
