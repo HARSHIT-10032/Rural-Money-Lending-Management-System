@@ -29,6 +29,14 @@ export default function Dashboard() {
         );
     });
 
+    const handleRowClick = (loan) => {
+        if (loan.status === "Pending") {
+            navigate(`/settle-loan/${loan._id}`);
+        } else if (loan.status === "Cleared") {
+            navigate(`/cleared-loan-detail/${loan._id}`);
+        }
+    };
+
     return (
         <div className="page-wrapper">
             <div className="dashboard-container">
@@ -67,6 +75,8 @@ export default function Dashboard() {
                                 filteredLoans.map((loan) => (
                                     <tr
                                         key={loan._id}
+                                        onClick={() => handleRowClick(loan)}
+                                        style={{ cursor: "pointer" }}
                                     >
                                         <td>{loan.user?.name}</td>
                                         <td>{loan.user?.mobile}</td>
