@@ -2,8 +2,10 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../Context/AppContext";
 import "./css/createloan.css";
 import API from "../api";
+import { useNavigate } from "react-router-dom"; 
 
 export default function CreateLoanForm() {
+    const navigate = useNavigate();
     const { loans, addLoan } = useContext(AppContext);
     const today = new Date().toISOString().split("T")[0];
 
@@ -115,6 +117,7 @@ export default function CreateLoanForm() {
             addLoan(savedLoan);
             setSubmittedData(savedLoan);
             handleReset();
+            navigate("/dashboard");
 
         } catch (err) {
             console.error("Error creating loan:", err);
