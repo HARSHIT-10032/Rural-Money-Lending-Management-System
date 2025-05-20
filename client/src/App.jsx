@@ -3,6 +3,16 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AppContext } from "./Context/AppContext";
 
+import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./Pages/Login";
+import Dashboard from "./Pages/Dashboard";
+import CreateLoan from "./Pages/CreateLoan";
+import ManageInterest from "./Pages/ManageInterest";
+import SettleLoan from "./Pages/SettleLoan";
+import SettledLoanDetail from "./Pages/SettledLoanDetail";
+import ClearedLoans from "./Pages/ClearedLoan";
+
 import './App.css'
 
 function App() {

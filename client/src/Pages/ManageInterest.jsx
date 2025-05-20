@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./css/dashboard.css";
+import "./css/ManageInterest.css";
 
 export default function ManageInterest() {
     const [loans, setLoans] = useState([]);

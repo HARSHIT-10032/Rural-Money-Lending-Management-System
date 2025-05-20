@@ -1,0 +1,85 @@
+/* ===== Reset CSS (gap/scrollbar hatane ke liye) ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Scrollbar remove */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Login Page ===== */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+/* Box styling */
+.login-page div {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+/* Heading */
+.login-page h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  letter-spacing: 1px;
+}
+
+/* Labels */
+.login-page p {
+  margin: 10px 0 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input fields */
+.login-page input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.login-page input:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 6px rgba(79, 172, 254, 0.6);
+}
+
+/* Button (chota aur clean) */
+.login-page button {
+  width: 100%;
+  padding: 10px;
+  background: #4facfe;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-page button:hover {
+  background: #00c6ff;
+}

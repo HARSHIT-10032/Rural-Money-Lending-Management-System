@@ -1,78 +1,123 @@
-.container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background: #f8f9fa;
-  min-height: 100vh;
+.page-wrapper {
+  padding-top: 80px;
 }
 
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #222;
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 30px 30px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-title {
   text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.dashboard-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  border-left: 4px solid #3498db;
+  padding-left: 8px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  outline: none;
+}
+
+.search-box:focus {
+  border-color: #6366f1;
+  box-shadow: 0px 0px 6px rgba(99, 102, 241, 0.5);
+}
+
+.table-container {
+  overflow-x: auto;  /* zarurat padne par hi scroll */
 }
 
 .loan-table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  table-layout: fixed; /* columns fix so scrollbar na aaye */
 }
 
 .loan-table th,
 .loan-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
   font-size: 14px;
+  word-wrap: break-word;
+  white-space: normal; /* nowrap hata diya */
 }
 
 .loan-table th {
-  background: #007bff;
-  color: white;
+  background: #f3f4f6;
+  font-weight: 600;
 }
 
-td{
-    color: black;
+.loan-table td {
+  color: #374151;
 }
 
-.loan-table tr:nth-child(even) {
-  background: #f2f2f2;
+.text-right {
+  text-align: right;
 }
 
+.text-center {
+  text-align: center;
+}
+
+/* Status Badges */
+.status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.pending {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status.cleared {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status.due {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.status.default {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.no-records {
+  text-align: center;
+  padding: 16px;
+  color: #6b7280;
+}
+
+/* Hover effect smooth without shifting layout */
 .loan-table tr:hover {
-  background: #eaf3ff;
-}
-
-.settle-btn {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.settle-btn:hover {
-  background: #218838;
-}
-
-.action-btn {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.action-btn:hover {
-  background: #218838;
+  background: #f9fafb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
