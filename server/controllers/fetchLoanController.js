@@ -30,3 +30,16 @@ exports.getPendingLoans = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
+
+// ALL Cleared loans API
+exports.getClearedLoans = async (req, res) => {
+  try {
+    const loans = await Loan.find({ status: "Cleared" })
+      .populate("user");
+
+    res.json(loans);
+  } catch (err) {
+    console.error("Error fetching cleared loans:", err);
+    res.status(500).json({ error: err.message });
+  }
+};
