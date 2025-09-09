@@ -39,6 +39,10 @@ const loanSchema = new mongoose.Schema({
     default: "Pending",
   },
   remarks: String,
+  payments: [{ 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "Payment" 
+    }],
 });
 
 module.exports = mongoose.model("Loan", loanSchema);
