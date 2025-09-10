@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL:"https://rural-money-lending-management-system-backend.onrender.com/api",
+  baseURL:"https://rural-money-lending-management-system.onrender.com/api",
 });
 
 // Attach token to every request if present
