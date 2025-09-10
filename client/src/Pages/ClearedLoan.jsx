@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
 import "./css/dashboard.css";
 
 export default function ClearedLoans() {
-    const [loans, setLoans] = useState([]);
+    const { loans, fetchLoans, loadingLoans } = useContext(AppContext);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
+    // fetch loans on mount
     useEffect(() => {
-        axios
-            .get("http://localhost:5000/api/loans/cleared")
-            .then((res) => setLoans(res.data))
-            .catch((err) => console.error("Error fetching cleared loans:", err));
+        fetchLoans();
     }, []);
 
-    const filtered = loans.filter((loan) => {
+    // Filter only cleared loans
+    const clearedLoans = loans.filter(l => l.status === "Cleared");
+
+    // Apply search filter
+    const filtered = clearedLoans.filter((loan) => {
         const term = search.toLowerCase();
         return (
             loan.user?.name?.toLowerCase().includes(term) ||
             loan.user?.surname?.toLowerCase().includes(term) ||
             loan.user?.mobile?.toLowerCase().includes(term) ||
             loan.user?.village?.toLowerCase().includes(term) ||
-            (loan.sanctionDate &&
-                new Date(loan.sanctionDate).toISOString().slice(0, 10).includes(term)) ||
-            (loan.closeDate &&
-                new Date(loan.closeDate).toISOString().slice(0, 10).includes(term))
+            (loan.sanctionDate && new Date(loan.sanctionDate).toISOString().slice(0, 10).includes(term)) ||
+            (loan.closeDate && new Date(loan.closeDate).toISOString().slice(0, 10).includes(term))
         );
     });
+
+    if (loadingLoans) return <p className="text-center">Loading cleared loans...</p>;
 
     return (
         <div className="page-wrapper">
@@ -77,10 +79,7 @@ export default function ClearedLoans() {
                                         <td>₹{Number(loan.amount || 0).toLocaleString()}</td>
                                         <td>₹{Number(loan.totalInterestPaid || 0).toLocaleString()}</td>
                                         <td>
-                                            ₹
-                                            {Number(
-                                                (loan.amount || 0) + (loan.totalInterestPaid || 0)
-                                            ).toLocaleString()}
+                                            ₹{Number((loan.amount || 0) + (loan.totalInterestPaid || 0)).toLocaleString()}
                                         </td>
                                         <td className="text-center">
                                             <button
@@ -90,7 +89,6 @@ export default function ClearedLoans() {
                                                 View
                                             </button>
                                         </td>
-
                                     </tr>
                                 ))
                             )}

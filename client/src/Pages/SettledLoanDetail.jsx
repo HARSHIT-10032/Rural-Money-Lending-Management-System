@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import API from "../api";
 import "./css/dashboard.css";
+import { AppContext } from "../Context/AppContext";
 
 export default function SettledLoanDetail() {
   const { id } = useParams();
-  const [loan, setLoan] = useState(null);
+  const { loans } = useContext(AppContext); // Context se loans
   const navigate = useNavigate();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await API.get(`/loans/cleared/${id}`);
-        setLoan(data);
-      } catch (err) {
-        console.error("Loan fetch error:", err);
-      }
-    })();
-  }, [id]);
+  // Find loan from context
+  const loan = loans.find((l) => l._id === id && l.status === "Cleared");
 
   if (!loan) return <p className="text-center">Loading loan details...</p>;
 
@@ -26,9 +18,8 @@ export default function SettledLoanDetail() {
       <div className="dashboard-container">
         <h2 className="dashboard-title">✅ Cleared Loan</h2>
 
-
         <div className="card-box">
-          <h3 className="dashboard-subtitle">📑 Settled Loan Details – Personal Info</h3>
+          <h3 className="dashboard-subtitle">📑 Personal Info</h3>
           <table className="detail-table">
             <tbody>
               <tr>
@@ -82,8 +73,7 @@ export default function SettledLoanDetail() {
               <tr>
                 <th>Total Amount Paid</th>
                 <td>
-                  ₹
-                  {Number((loan.amount || 0) + (loan.totalInterestPaid || 0)).toLocaleString()}
+                  ₹{Number((loan.amount || 0) + (loan.totalInterestPaid || 0)).toLocaleString()}
                 </td>
               </tr>
               <tr>
@@ -98,7 +88,6 @@ export default function SettledLoanDetail() {
           <h3 className="dashboard-subtitle">📜 Payment History</h3>
           <p> I am working on this feature.</p>
         </div>
-
 
         <button onClick={() => navigate("/cleared-loans")} className="btn-back">
           Back to Cleared Loans

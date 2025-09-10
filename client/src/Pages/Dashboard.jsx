@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 import "./css/dashboard.css";
 
 export default function Dashboard() {
-    const [loans, setLoans] = useState([]);
+    const { loans } = useContext(AppContext);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/loans")
-            .then((res) => {
-                setLoans(res.data);
-                console.log(res.data);
-            })
-            .catch((err) => {
-                console.error("Error fetching loans:", err);
-            });
-    }, []);
-
-    const filteredLoans = loans.filter((loan) => {
+    const filteredLoans = loans.filter(loan => {
         const term = search.toLowerCase();
         return (
             loan.user?.name?.toLowerCase().includes(term) ||
@@ -30,11 +19,8 @@ export default function Dashboard() {
     });
 
     const handleRowClick = (loan) => {
-        if (loan.status === "Pending") {
-            navigate(`/settle-loan/${loan._id}`);
-        } else if (loan.status === "Cleared") {
-            navigate(`/cleared-loan-detail/${loan._id}`);
-        }
+        if (loan.status === "Pending") navigate(`/settle-loan/${loan._id}`);
+        else if (loan.status === "Cleared") navigate(`/cleared-loan-detail/${loan._id}`);
     };
 
     return (
@@ -66,18 +52,10 @@ export default function Dashboard() {
                         </thead>
                         <tbody>
                             {filteredLoans.length === 0 ? (
-                                <tr>
-                                    <td colSpan="8" className="no-records">
-                                        No records found
-                                    </td>
-                                </tr>
+                                <tr><td colSpan="8" className="no-records">No records found</td></tr>
                             ) : (
-                                filteredLoans.map((loan) => (
-                                    <tr
-                                        key={loan._id}
-                                        onClick={() => handleRowClick(loan)}
-                                        style={{ cursor: "pointer" }}
-                                    >
+                                filteredLoans.map(loan => (
+                                    <tr key={loan._id} onClick={() => handleRowClick(loan)} style={{ cursor: "pointer" }}>
                                         <td>{loan.user?.name}</td>
                                         <td>{loan.user?.mobile}</td>
                                         <td>{loan.user?.village}</td>
@@ -85,22 +63,7 @@ export default function Dashboard() {
                                         <td className="text-right">₹{loan.amount.toLocaleString()}</td>
                                         <td>₹{loan.totalInterest}</td>
                                         <td>₹{loan.amount + loan.totalInterest}</td>
-
-
-                                        <td className="text-center">
-                                            <span
-                                                className={`status ${loan.status === "Cleared"
-                                                    ? "cleared"
-                                                    : loan.status === "Due Soon"
-                                                        ? "due"
-                                                        : loan.status === "Pending"
-                                                            ? "pending"
-                                                            : "default"
-                                                    }`}
-                                            >
-                                                {loan.status}
-                                            </span>
-                                        </td>
+                                        <td className={`status ${loan.status.toLowerCase().replace(" ","")}`}>{loan.status}</td>
                                     </tr>
                                 ))
                             )}
@@ -109,6 +72,5 @@ export default function Dashboard() {
                 </div>
             </div>
         </div>
-
     );
 }

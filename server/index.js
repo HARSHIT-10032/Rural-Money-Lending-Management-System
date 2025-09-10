@@ -9,7 +9,10 @@ const authRoutes = require("./routes/authRoutes");
 const loanRoutes = require("./routes/loanRoutes");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+}));
 app.use(express.json());
 
 // routes
@@ -19,7 +22,9 @@ app.use("/api/users", userRoutes);
 
 app.use(errorHandler);
 
-// Start server
+
+const PORT = process.env.PORT || 5000;
+
 connectDB().then(() => {
-  app.listen(5000, () => console.log("Server running on port 5000"));
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });

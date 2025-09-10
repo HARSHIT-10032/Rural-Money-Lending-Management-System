@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/ManageInterest.css";
+import { AppContext } from "../Context/AppContext";
 
 export default function ManageInterest() {
-    const [loans, setLoans] = useState([]);
+    const { loans } = useContext(AppContext);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        axios
-            .get("http://localhost:5000/api/loans/pending")
-            .then((res) => {
-                console.log("Pending Loans Response:", res.data);
-                setLoans(res.data);
-            })
-            .catch((err) => console.error("Error fetching pending loans:", err));
-    }, []);
+    // Pending loans filter
+    const pendingLoans = loans.filter((loan) => loan.status === "Pending");
 
-    const filtered = loans.filter((loan) => {
+    // Search filter
+    const filteredLoans = pendingLoans.filter((loan) => {
         const term = search.toLowerCase();
         return (
             loan.user?.name?.toLowerCase().includes(term) ||
@@ -58,12 +52,12 @@ export default function ManageInterest() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filtered.length === 0 ? (
+                            {filteredLoans.length === 0 ? (
                                 <tr>
                                     <td colSpan="9" className="no-records">No records found</td>
                                 </tr>
                             ) : (
-                                filtered.map((loan) => (
+                                filteredLoans.map((loan) => (
                                     <tr key={loan._id}>
                                         <td>{loan.user?.name}</td>
                                         <td>{loan.user?.surname}</td>
@@ -71,13 +65,10 @@ export default function ManageInterest() {
                                         <td>{loan.user?.village}</td>
                                         <td>{loan.sanctionDate?.slice(0, 10)}</td>
                                         <td>₹{Number(loan.amount || 0).toLocaleString()}</td>
-
                                         <td>₹{Number(loan.totalInterest || 0).toLocaleString()}</td>
-
                                         <td className="text-right">
                                             ₹{Number((loan.amount || 0) + (loan.totalInterest || 0)).toLocaleString()}
                                         </td>
-
                                         <td className="text-center">
                                             <button
                                                 className="btn-submit"
