@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node_modules/.bin/vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "node_modules/.bin/vite preview --port $PORT"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.13",
