@@ -11,17 +11,21 @@ export function AppContextProvider({ children }) {
 
   // Fetch loans from DB
   const fetchLoans = async () => {
-    setLoadingLoans(true);
-    try {
-      const { data } = await API.get("/loans");
-      // data assumed to be array of loans with populated user/payments
-      setLoans(data);
-    } catch (err) {
-      console.error("Error fetching loans:", err);
-      setLoans([]);
-    }
-    setLoadingLoans(false);
-  };
+  setLoadingLoans(true);
+  try {
+    const { data } = await API.get("/loans");
+
+    // Safe check: make sure we always set array
+    const loansArray = Array.isArray(data) ? data : data.loans || [];
+    setLoans(loansArray);
+
+  } catch (err) {
+    console.error("Error fetching loans:", err);
+    setLoans([]);
+  }
+  setLoadingLoans(false);
+};
+
 
   useEffect(() => {
     if (isLoggedIn) {
