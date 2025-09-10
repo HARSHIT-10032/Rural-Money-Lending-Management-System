@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
-import "./css/dashboard.css";
+import "./css/Dashboard.css";
 
 export default function ClearedLoans() {
     const { loans, fetchLoans, loadingLoans } = useContext(AppContext);
