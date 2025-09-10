@@ -10,7 +10,7 @@ const loanRoutes = require("./routes/loanRoutes");
 
 const app = express();
 app.use(cors({
-  origin: "https://rural-money-lending-management-system-29tw.onrender.com",
+  origin: '*",
   credentials: true,
 }));
 app.use(express.json());
