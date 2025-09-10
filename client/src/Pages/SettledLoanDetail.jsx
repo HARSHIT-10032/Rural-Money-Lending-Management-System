@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./css/dashboard.css";
+import "./css/Dashboard.css";
 import { AppContext } from "../Context/AppContext";
 
 export default function SettledLoanDetail() {
