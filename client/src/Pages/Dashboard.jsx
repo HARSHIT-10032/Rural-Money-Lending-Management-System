@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
-import "./css/dashboard.css";
+import "./css/Dashboard.css";
 
 export default function Dashboard() {
     const { loans } = useContext(AppContext);
