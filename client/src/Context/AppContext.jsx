@@ -13,7 +13,9 @@ export function AppContextProvider({ children }) {
   const fetchLoans = async () => {
   setLoadingLoans(true);
   try {
+    console.log("Fetching loans from:", `${process.env.REACT_APP_API_URL}/loans`);// path log
     const { data } = await API.get("/loans");
+    console.log("Loans data received:", data); // response data log
 
     // Safe check: make sure we always set array
     const loansArray = Array.isArray(data) ? data : data.loans || [];
