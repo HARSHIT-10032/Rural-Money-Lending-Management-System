@@ -10,13 +10,13 @@ export default function ClearedLoans() {
 
     // fetch loans on mount
     useEffect(() => {
-        fetchLoans();
-    }, []);
+        if (fetchLoans) fetchLoans();
+    }, [fetchLoans]);
 
-    // Filter only cleared loans
-    const clearedLoans = loans.filter(l => l.status === "Cleared");
+    // Filter only cleared loans safely
+    const clearedLoans = (loans || []).filter(l => l.status === "Cleared");
 
-    // Apply search filter
+    // Apply search filter safely
     const filtered = clearedLoans.filter((loan) => {
         const term = search.toLowerCase();
         return (
