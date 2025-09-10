@@ -8,7 +8,7 @@ export default function Dashboard() {
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
-    const filteredLoans = loans.filter(loan => {
+    const filteredLoans = (loans || []).filter(loan => {
         const term = search.toLowerCase();
         return (
             loan.user?.name?.toLowerCase().includes(term) ||
@@ -17,6 +17,7 @@ export default function Dashboard() {
             (loan.sanctionDate && new Date(loan.sanctionDate).toISOString().slice(0, 10).includes(term))
         );
     });
+
 
     const handleRowClick = (loan) => {
         if (loan.status === "Pending") navigate(`/settle-loan/${loan._id}`);
