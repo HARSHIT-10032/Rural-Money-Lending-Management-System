@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../Context/AppContext";
-import "./css/createloan.css";
+import "./css/CreateLoan.css";
 import API from "../api";
 import { useNavigate } from "react-router-dom";
 
