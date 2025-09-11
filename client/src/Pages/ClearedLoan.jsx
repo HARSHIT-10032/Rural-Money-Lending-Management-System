@@ -1,25 +1,31 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../api";
 import { AppContext } from "../Context/AppContext";
 import "./css/Dashboard.css";
 
 export default function ClearedLoans() {
-  const { loans, fetchLoans, loadingLoans } = useContext(AppContext);
+  const [loans, setLoans] = useState([]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   // Fetch loans on mount
   useEffect(() => {
-    if (fetchLoans) fetchLoans();
-  }, [fetchLoans]);
+  const fetchLoans = async () => {
+    try {
+      const { data } = await API.get("/loans/cleared");
+      setLoans(data);
+    } catch (err) {
+      console.error("Error fetching cleared loans:", err);
+    }
+  };
 
-  // Filter only cleared loans safely (trim & lowercase for safety)
-  const clearedLoans = (loans || []).filter(
-    (l) => l.status?.trim().toLowerCase() === "cleared"
-  );
+  fetchLoans();
+}, []);
+
 
   // Apply search filter safely
-  const filtered = clearedLoans.filter((loan) => {
+  const filtered = loans.filter((loan) => {
     const term = search.toLowerCase();
     return (
       loan.user?.name?.toLowerCase().includes(term) ||
@@ -32,8 +38,6 @@ export default function ClearedLoans() {
         new Date(loan.closeDate).toISOString().slice(0, 10).includes(term))
     );
   });
-
-  if (loadingLoans) return <p className="text-center">Loading cleared loans...</p>;
 
   return (
     <div className="page-wrapper">
