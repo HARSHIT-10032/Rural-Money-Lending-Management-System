@@ -16,13 +16,6 @@ app.use(cors({
   allowedHeaders: ["Content-Type","Authorization"]
 }));
 
-// Optional: handle preflight OPTIONS request manually
-app.options("*", cors({
-  origin: "https://rural-money-lending-management-system-29tw.onrender.com",
-  credentials: true,
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization"]
-}));
 
 app.use(express.json());
 
