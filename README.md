@@ -3,7 +3,7 @@
 
 ## 🚀 Deployment
 
-- **Frontend**: Hosted on [Render]([https://render.com](https://rural-money-lending-management-system-29tw.onrender.com) as a static site.  
+- **Frontend**: Hosted on [Render](https://rural-money-lending-management-system-29tw.onrender.com) as a static site.  
 - **Backend**: Hosted on [Render](https://rural-money-lending-management-system.onrender.com/api/loans) as a Node.js web service.  
 - Both are connected and working in production.
 
