@@ -3,8 +3,8 @@
 
 ## 🚀 Deployment
 
-- **Frontend**: Hosted on [Render]([https://render.com](https://rural-money-lending-management-system-29tw.onrender.com)) as a static site.  
-- **Backend**: Hosted on [Render](https://rural-money-lending-management-system.onrender.com) as a Node.js web service.  
+- **Frontend**: Hosted on [Render]([https://render.com](https://rural-money-lending-management-system-29tw.onrender.com) as a static site.  
+- **Backend**: Hosted on [Render](https://rural-money-lending-management-system.onrender.com/api/loans) as a Node.js web service.  
 - Both are connected and working in production.
 
 ---
@@ -52,24 +52,31 @@
 
 ## 📷 Screenshots
 **Login Page**
+
 <img width="1905" height="903" alt="image" src="https://github.com/user-attachments/assets/a9685bbd-116d-4b1c-96d2-5bea5b891050" />
 
 **Dashboard**
+
 <img width="1880" height="883" alt="image" src="https://github.com/user-attachments/assets/191300ec-4db2-4f87-b6cd-75cea73327eb" />
 
 **Create Loan**
+
 <img width="668" height="844" alt="image" src="https://github.com/user-attachments/assets/d0709194-c313-414b-8ada-00e3512332f2" />
 
 **Manage Interest**
+
 <img width="1329" height="875" alt="image" src="https://github.com/user-attachments/assets/58052a32-ce5f-413b-8e6b-907bbe7b2ca7" />
 
 **Loan Settlement Page**
+
 <img width="1075" height="841" alt="image" src="https://github.com/user-attachments/assets/8dc81f3e-c639-4d83-9724-557b2fb41f26" />
 
 **Cleared Loans**
+
 <img width="1035" height="642" alt="image" src="https://github.com/user-attachments/assets/65a2535a-b2a0-4f2b-be25-5ceb2f545d62" />
 
 **Cleared Loan Details**
+
 <img width="1112" height="857" alt="image" src="https://github.com/user-attachments/assets/0116fe46-817c-4c2f-9234-a757249fb0dc" />
 
 
